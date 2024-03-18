@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/results.css" />
+    <title>Results</title>
+  </head>
+  <body>
+    <header>
+      <img src="assets/img/epicode_logo.png" alt="epicode_logo" />
+    </header>
+    <main>
+      <h1>Results</h1>
+      <h2>The summary of your answers:</h2>
+      <div id="results">
+        <div id="correct">
+          <h3>Correct</h3>
+          <h4>66.7%</h4>
+          <p>4/6 questions</p>
+        </div>
+        <div id="pieChart"></div>
+        <div id="wrong">
+          <h3>Wrong</h3>
+          <h4>33.3%</h4>
+          <p>2/6 questions</p>
+        </div>
+      </div>
+      <button id="rateUs" onclick="rateusUrl()">RATE US</button>
+    </main>
+    <script src="rateus.js"></script>
+  </body>
+</html>
