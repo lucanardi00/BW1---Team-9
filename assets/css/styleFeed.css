@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+body{
+    background-image: url("../img/bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+              
+
+}
+
+#cont-img{
+    margin-left:9em;
+    margin-top:5em;
+display:inline-block;
+}
+
+#cont-img img{
+    width: 15%;
+}
+
+h1{
+    font-family: 'Outfit';
+    color:white;
+}
+
+p{
+    font-family: 'Inter';
+    color:white;    
+}
+
+#conteiner{
+    margin-top:8em;
+    text-align: center;
+    width:56%;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+#intestazione {
+    
+}
+#intestazione h1{
+    font-weight: 600;
+    font-size: 68px;  
+}
+
+.pInte{
+    margin-left: auto;
+    margin-right    : auto;
+    margin-top: 1em;    
+    font-size:2em;
+}
+
+#stelleJs{
+    margin-top:1.5em;
+    height: 3em;
+    background-color: blue;
+}
+
+#pFeed{
+    margin-top: 5em;
+}
+
+input{
+    color:grey; 
+    width: 100%;
+    margin-top: 5em;
+    height: 4em;
+    background-color: transparent;
+    border:none;
+    font-size: larger;
+    border-bottom: 5px solid #900080;
+}
+
+button{
+    background-color: #00FFFF;
+    width: 12em;
+    height: 3em;
+    font-size:20px;
+    font-weight: bold;
+    margin-top:5em;
+    cursor:pointer;
+}
