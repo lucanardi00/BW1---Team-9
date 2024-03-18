@@ -25,6 +25,6 @@ const proceedUrl = function () {
   if (checkbox.checked) {
     window.location.href = 'benchmark.html'
   } else {
-    alert('You must tick the agreements first!')
+    alert('You must accept the agreements first!')
   }
 }
