@@ -37,35 +37,55 @@ p {
 #results {
   height: 600px;
   position: relative;
+  padding: 100px;
 }
 
-#pieChart {
-  width: 300px;
+.pie {
   height: 300px;
+  width: 300px;
   border-radius: 50%;
-  background-image: conic-gradient(#c2128d 70deg, #00ffff 0 235deg);
+  background: conic-gradient(deepskyblue 0% 25%, orangered 25% 85%);
+  mask-image: radial-gradient(
+    circle farthest-side at center,
+    transparent 70%,
+    white 50%
+  );
+}
+
+.pie.hollow {
   display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie.hollow::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  height: 220px;
+  width: 220px;
+  border-radius: 50%;
+}
+
+span {
+  font-size: 24pt;
+  z-index: 2;
+  font-weight: bold;
+  font-family: 'inter';
+  position: absolute;
+  left: 715px;
+  bottom: 600px;
+  justify-content: center;
+  align-items: center;
 }
 
 #correct {
   display: inline-block;
   float: left;
-  margin-top: 18%;
-  margin-left: 5%;
-  text-align: left;
 }
 
 #wrong {
   display: inline-block;
   float: right;
-  margin-top: 18%;
-  margin-right: 5%;
-  text-align: right;
 }
 
 #rateUs {
@@ -78,6 +98,7 @@ p {
   background-color: transparent;
   border: 1px solid #e7e7eb;
   color: #e7e7eb;
+  margin-left: 40px;
 }
 
 #rateUs:hover {
