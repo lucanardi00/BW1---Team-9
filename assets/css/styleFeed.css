@@ -5,7 +5,7 @@ body{
     background-image: url("../img/bg.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    
+    min-height: 100vh;
               
 
 }
@@ -82,4 +82,11 @@ button{
     font-weight: bold;
     margin-top:5em;
     cursor:pointer;
+    
 }
+
+button:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 20px #00ffff;
+    outline: none;  
+  }
