@@ -86,7 +86,8 @@ span {
   float: right;
 }
 
-#rateUs {
+#rateUs,
+#retake {
   width: 200px;
   height: 70px;
   margin-bottom: 5%;
@@ -99,7 +100,8 @@ span {
   margin-left: 40px;
 }
 
-#rateUs:hover {
+#rateUs:hover,
+#retake:hover {
   cursor: pointer;
   box-shadow: 0 0 20px #e7e7eb;
 }
