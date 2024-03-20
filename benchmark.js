@@ -87,154 +87,165 @@ const results = [
     correct_answer: `False`,
     incorrect_answers: [`True`],
   },
-]
+];
 
-let secondi = 60
-let timer = document.getElementById('timer')
-let questionElement = document.getElementById('question')
-let answerElement = document.getElementById('answer')
-let questionCounterElement = document.getElementById('questionContainer')
-let questionCounter = 0
-let totalQuestions = results.length
-let pieChartElement = document.getElementById('pie-chart')
-let intervallo
-let punti = 0
+let secondi = 60;
+let timer = document.getElementById("timer");
+let questionElement = document.getElementById("question");
+let answerElement = document.getElementById("answer");
+let questionCounterElement = document.getElementById("questionContainer");
+let questionCounter = 0;
+let totalQuestions = results.length;
+let pieChartElement = document.getElementById("pie-chart");
+let intervallo;
+let punti = 0;
+const spanCreate = document.createElement("span");
+const startQuiz = function () {
+  const tendina = document.getElementById("tendina");
+  const selezione = parseInt(tendina.value);
+  const menuBtn = document.getElementById("menuBtn");
+  totalQuestions = selezione;
+  if (selezione === 5) {
+    results.splice(5);
+  }
+  questionCounter = 0;
+  console.log(tendina.value);
+  console.log("selezione" + results);
 
-const svgNS = 'http://www.w3.org/2000/svg'
-const svg = document.createElementNS(svgNS, 'svg')
-const pieChart = document.createElementNS(svgNS, 'circle')
+  spanCreate.innerText = "/" + totalQuestions;
+  spanCreate.style.color = "#B21288";
+  questionCounterElement.appendChild(spanCreate);
+  document.getElementById("pie-chart").style.display = "block";
+  tendina.style.display = "none";
+  menuBtn.style.display = "none";
+  mostraProssimaDomanda(selezione);
+};
 
-pieChart.setAttribute('cx', '50%')
-pieChart.setAttribute('cy', '50%')
-pieChart.setAttribute('r', '40%')
-pieChart.setAttribute('stroke-dasharray', '0')
-pieChart.classList.add('slice')
-svg.appendChild(pieChart)
-pieChartElement.appendChild(svg)
+console.log(results);
+const svgNS = "http://www.w3.org/2000/svg";
+const svg = document.createElementNS(svgNS, "svg");
+const pieChart = document.createElementNS(svgNS, "circle");
 
-const timerText = document.createElementNS(svgNS, 'text')
-timerText.setAttribute('id', 'timerText')
-timerText.setAttribute('text-anchor', 'middle')
-timerText.setAttribute('alignment-baseline', 'middle')
-timerText.setAttribute('font-size', '24px')
-timerText.setAttribute('fill', 'white')
-timerText.setAttribute('x', '50%')
-timerText.setAttribute('y', '50%')
-svg.appendChild(timerText)
+pieChart.setAttribute("cx", "50%");
+pieChart.setAttribute("cy", "50%");
+pieChart.setAttribute("r", "40%");
+pieChart.setAttribute("stroke-dasharray", "0");
+pieChart.classList.add("slice");
+svg.appendChild(pieChart);
+pieChartElement.appendChild(svg);
 
-const textElement = document.getElementById('timerText')
-const timerTextX = parseFloat(pieChart.getAttribute('cx'))
-const timerTextY = parseFloat(pieChart.getAttribute('cy'))
-textElement.setAttribute('x', timerTextX)
-textElement.setAttribute('y', timerTextY)
-textElement.textContent = secondi
+const timerText = document.createElementNS(svgNS, "text");
+timerText.setAttribute("id", "timerText");
+timerText.setAttribute("text-anchor", "middle");
+timerText.setAttribute("alignment-baseline", "middle");
+timerText.setAttribute("font-size", "24px");
+timerText.setAttribute("fill", "white");
+timerText.setAttribute("x", "50%");
+timerText.setAttribute("y", "50%");
+svg.appendChild(timerText);
 
-const secondsText = document.createElementNS(svgNS, 'text')
-secondsText.setAttribute('id', 'secondsText')
-secondsText.setAttribute('text-anchor', 'middle')
-secondsText.setAttribute('alignment-baseline', 'middle')
-secondsText.setAttribute('font-size', '10px')
-secondsText.setAttribute('fill', 'white')
-secondsText.setAttribute('x', timerTextX)
-secondsText.setAttribute('y', timerTextY - 20)
-secondsText.textContent = 'SECONDS'
-svg.appendChild(secondsText)
+const textElement = document.getElementById("timerText");
+const timerTextX = parseFloat(pieChart.getAttribute("cx"));
+const timerTextY = parseFloat(pieChart.getAttribute("cy"));
+textElement.setAttribute("x", timerTextX);
+textElement.setAttribute("y", timerTextY);
+textElement.textContent = secondi;
 
-const remainingText = document.createElementNS(svgNS, 'text')
-remainingText.setAttribute('id', 'remainingText')
-remainingText.setAttribute('text-anchor', 'middle')
-remainingText.setAttribute('alignment-baseline', 'middle')
-remainingText.setAttribute('font-size', '10px')
-remainingText.setAttribute('fill', 'white')
-remainingText.setAttribute('x', timerTextX)
-remainingText.setAttribute('y', timerTextY + 20)
-remainingText.textContent = 'REMAINING'
-svg.appendChild(remainingText)
+const secondsText = document.createElementNS(svgNS, "text");
+secondsText.setAttribute("id", "secondsText");
+secondsText.setAttribute("text-anchor", "middle");
+secondsText.setAttribute("alignment-baseline", "middle");
+secondsText.setAttribute("font-size", "10px");
+secondsText.setAttribute("fill", "white");
+secondsText.setAttribute("x", timerTextX);
+secondsText.setAttribute("y", timerTextY - 20);
+secondsText.textContent = "SECONDS";
+svg.appendChild(secondsText);
+
+const remainingText = document.createElementNS(svgNS, "text");
+remainingText.setAttribute("id", "remainingText");
+remainingText.setAttribute("text-anchor", "middle");
+remainingText.setAttribute("alignment-baseline", "middle");
+remainingText.setAttribute("font-size", "10px");
+remainingText.setAttribute("fill", "white");
+remainingText.setAttribute("x", timerTextX);
+remainingText.setAttribute("y", timerTextY + 20);
+remainingText.textContent = "REMAINING";
+svg.appendChild(remainingText);
 
 function updatePieChart() {
-  const percentage = (secondi / 60) * 100
-  const circumference = 2 * Math.PI * parseFloat(pieChart.getAttribute('r'))
-  const strokeDasharray = (percentage / 100) * circumference
+  const percentage = (secondi / 60) * 100;
+  const circumference = 2 * Math.PI * parseFloat(pieChart.getAttribute("r"));
+  const strokeDasharray = (percentage / 100) * circumference;
   pieChart.setAttribute(
-    'stroke-dasharray',
+    "stroke-dasharray",
     `${strokeDasharray} ${circumference}`
-  )
+  );
 
-  const textElement = document.getElementById('timerText')
-  textElement.textContent = secondi
+  const textElement = document.getElementById("timerText");
+  textElement.textContent = secondi;
 }
 
 function tick() {
-  secondi = secondi - 1
+  secondi = secondi - 1;
   if (secondi === 0) {
-    clearInterval(intervallo)
-    mostraProssimaDomanda()
-    secondi = 60
+    clearInterval(intervallo);
+    mostraProssimaDomanda();
+    secondi = 60;
   }
-  updatePieChart()
+  updatePieChart();
 }
 
 function mostraDomanda(domanda) {
   // Pulisci elementi precedenti
-  questionElement.innerHTML = ''
-  answerElement.innerHTML = ''
+  questionElement.innerHTML = "";
+  answerElement.innerHTML = "";
 
   // Aggiungi la domanda
-  let questionHTML = document.createElement('h1')
-  questionHTML.textContent = domanda.question
-  questionElement.appendChild(questionHTML)
+  let questionHTML = document.createElement("h1");
+  questionHTML.textContent = domanda.question;
+  questionElement.appendChild(questionHTML);
 
   // Aggiungi le risposte
-  let answers = [...domanda.incorrect_answers, domanda.correct_answer]
-  answers.sort(() => Math.random() - 0.5)
+  let answers = [...domanda.incorrect_answers, domanda.correct_answer];
+  answers.sort(() => Math.random() - 0.5);
   answers.forEach((risposta) => {
-    let button = document.createElement('button')
-    button.classList.add('conteiner-answeer')
-    button.textContent = risposta
-    button.addEventListener('click', function () {
-      clearInterval(intervallo)
+    let button = document.createElement("button");
+    button.classList.add("conteiner-answeer");
+    button.textContent = risposta;
+    button.addEventListener("click", function () {
+      clearInterval(intervallo);
       if (risposta === domanda.correct_answer) {
-        alert('Correct!')
-        punti++
-      } else {
-        alert('Inccorect!')
+        button.style.backgroundColor = "green";
+        punti++;
       }
-      console.log('Risposta giusta: ', domanda.correct_answer)
-      console.log('punti: ' + punti)
-      console.log('Risposta selezionata:', risposta)
-      localStorage.setItem('punteggio_risposte', punti)
+      console.log("Risposta giusta: ", domanda.correct_answer);
+      console.log("punti: " + punti);
+      console.log("Risposta selezionata:", risposta);
+      localStorage.setItem("punteggio_risposte", punti);
       console.log(
-        'Punteggio salvato nella memoria locale:',
-        localStorage.getItem('punteggio_risposte')
-      )
-      mostraProssimaDomanda()
-      secondi = 60
-    })
-    answerElement.appendChild(button)
-  })
+        "Punteggio salvato nella memoria locale:",
+        localStorage.getItem("punteggio_risposte")
+      );
+      mostraProssimaDomanda();
+      secondi = 60;
+    });
+    answerElement.appendChild(button);
+  });
 }
-
-const spanCreate = document.createElement('span')
-spanCreate.innerText = '/' + totalQuestions
-spanCreate.style.color = '#B21288'
-questionCounterElement.appendChild(spanCreate)
 
 function mostraProssimaDomanda() {
-  let domandaCasuale = results[Math.floor(Math.random() * results.length)]
+  let domandaCasuale = results[Math.floor(Math.random() * results.length)];
   if (questionCounter < totalQuestions) {
-    questionCounter++
+    questionCounter++;
     questionCounterElement.textContent =
-      'QUESTION ' + questionCounter + spanCreate.innerText
+      "QUESTION " + questionCounter + spanCreate.innerText;
   } else {
-    window.location.href = 'results.html'
+    window.location.href = "results.html";
   }
 
-  clearInterval(intervallo)
-  intervallo = setInterval(tick, 1000)
+  clearInterval(intervallo);
+  intervallo = setInterval(tick, 1000);
 
-  mostraDomanda(domandaCasuale)
+  mostraDomanda(domandaCasuale);
 }
-
-intervallo = setInterval(tick, 1000)
-mostraProssimaDomanda()
-console.log(punti)

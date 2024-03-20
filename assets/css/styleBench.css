@@ -6,8 +6,7 @@ body {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
-  width: 100%;
-  height: 100%;
+  min-height: 100vh ;
 }
 
 h1 {
@@ -16,8 +15,13 @@ h1 {
   font-size: 2em;
   text-align: center;
   margin-top: 80px;
+  
 }
 
+
+#menu h1{
+  margin-bottom:2em;
+}
 #cont-img {
   margin-left: 9em;
   margin-top: 5em;
@@ -103,6 +107,7 @@ h1 {
   height: 100px;
   position: relative;
   margin-top: 20px;
+  display:none;
 }
 
 #pie-chart svg {
@@ -120,6 +125,20 @@ h1 {
 button:hover {
   background-color: #c3008e;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+#menuBtn,#tendina{
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  width: 200px;
+  height: 50px; 
+  margin:1em;
+  border:none;
+}
+
+#menu{
+  text-align: center  ;
 }
 
 #timer-container {
