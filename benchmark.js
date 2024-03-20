@@ -110,6 +110,16 @@ pieChart.classList.add('slice')
 svg.appendChild(pieChart)
 pieChartElement.appendChild(svg)
 
+const timerText = document.createElementNS(svgNS, 'text')
+timerText.setAttribute('id', 'timerText')
+timerText.setAttribute('text-anchor', 'middle')
+timerText.setAttribute('alignment-baseline', 'middle')
+timerText.setAttribute('font-size', '24px')
+timerText.setAttribute('fill', 'white')
+timerText.setAttribute('x', '50%')
+timerText.setAttribute('y', '50%')
+svg.appendChild(timerText)
+
 function updatePieChart() {
   const percentage = (secondi / 60) * 100
   const circumference = 2 * Math.PI * parseFloat(pieChart.getAttribute('r'))
@@ -118,11 +128,17 @@ function updatePieChart() {
     'stroke-dasharray',
     `${strokeDasharray} ${circumference}`
   )
+
+  const textElement = document.getElementById('timerText')
+  const timerTextX = parseFloat(pieChart.getAttribute('cx'))
+  const timerTextY = parseFloat(pieChart.getAttribute('cy'))
+  textElement.setAttribute('x', timerTextX)
+  textElement.setAttribute('y', timerTextY)
+  textElement.textContent = secondi
 }
 
 function tick() {
   secondi = secondi - 1
-  timer.innerText = secondi
   if (secondi === 0) {
     clearInterval(intervallo)
     mostraProssimaDomanda()

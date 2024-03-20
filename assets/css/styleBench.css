@@ -49,7 +49,7 @@ h1 {
 }
 
 .conteiner-answeer {
-  border: top 5px solid white;
+  border-top-width: thick;
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.1);
   color: white;
@@ -67,6 +67,8 @@ h1 {
 #answer {
   margin-top: 6em;
   text-align: center;
+  margin-right: 300px;
+  margin-left: 300px;
 }
 #questionContainer {
   text-align: center;
@@ -114,4 +116,15 @@ h1 {
   stroke-width: 8;
   stroke-linecap: round;
   stroke: #3498db;
+}
+
+button:hover {
+  background-color: #c3008e;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+#timer-container {
+  float: right;
+  width: 300px;
+  font-family: 'Outfit';
 }
