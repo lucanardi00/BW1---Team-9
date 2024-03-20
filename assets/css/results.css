@@ -45,29 +45,25 @@ p {
   display: inline-block;
 }
 
-.pie {
-  height: 300px;
-  width: 300px;
+#pie {
+  height: 519px;
+  width: 526px;
   border-radius: 50%;
-  background: conic-gradient(deepskyblue 0% 25%, orangered 25% 85%);
+  display: inline-block;
+  background: conic-gradient(deepskyblue 15% 0%, orangered 0% 85%);
   mask-image: radial-gradient(
     circle farthest-side at center,
     transparent 70%,
     white 50%
+    
   );
 }
 
-.pie.hollow {
+.hollow {
   display: inline-block;
 }
 
-.pie.hollow::after {
-  content: '';
-  position: absolute;
-  height: 220px;
-  width: 220px;
-  border-radius: 50%;
-}
+
 
 span {
   font-size: 24pt;
