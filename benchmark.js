@@ -103,6 +103,7 @@ let punti = 0;
 const svgNS = "http://www.w3.org/2000/svg";
 const svg = document.createElementNS(svgNS, "svg");
 const pieChart = document.createElementNS(svgNS, "circle");
+
 pieChart.setAttribute("cx", "50%");
 pieChart.setAttribute("cy", "50%");
 pieChart.setAttribute("r", "40%");
@@ -121,6 +122,35 @@ timerText.setAttribute("x", "50%");
 timerText.setAttribute("y", "50%");
 svg.appendChild(timerText);
 
+const textElement = document.getElementById("timerText");
+const timerTextX = parseFloat(pieChart.getAttribute("cx"));
+const timerTextY = parseFloat(pieChart.getAttribute("cy"));
+textElement.setAttribute("x", timerTextX);
+textElement.setAttribute("y", timerTextY);
+textElement.textContent = secondi;
+
+const secondsText = document.createElementNS(svgNS, "text");
+secondsText.setAttribute("id", "secondsText");
+secondsText.setAttribute("text-anchor", "middle");
+secondsText.setAttribute("alignment-baseline", "middle");
+secondsText.setAttribute("font-size", "10px");
+secondsText.setAttribute("fill", "white");
+secondsText.setAttribute("x", timerTextX);
+secondsText.setAttribute("y", timerTextY - 20);
+secondsText.textContent = "SECONDS";
+svg.appendChild(secondsText);
+
+const remainingText = document.createElementNS(svgNS, "text");
+remainingText.setAttribute("id", "remainingText");
+remainingText.setAttribute("text-anchor", "middle");
+remainingText.setAttribute("alignment-baseline", "middle");
+remainingText.setAttribute("font-size", "10px");
+remainingText.setAttribute("fill", "white");
+remainingText.setAttribute("x", timerTextX);
+remainingText.setAttribute("y", timerTextY + 20);
+remainingText.textContent = "REMAINING";
+svg.appendChild(remainingText);
+
 function updatePieChart() {
   const percentage = (secondi / 60) * 100;
   const circumference = 2 * Math.PI * parseFloat(pieChart.getAttribute("r"));
@@ -131,10 +161,6 @@ function updatePieChart() {
   );
 
   const textElement = document.getElementById("timerText");
-  const timerTextX = parseFloat(pieChart.getAttribute("cx"));
-  const timerTextY = parseFloat(pieChart.getAttribute("cy"));
-  textElement.setAttribute("x", timerTextX);
-  textElement.setAttribute("y", timerTextY);
   textElement.textContent = secondi;
 }
 
@@ -208,3 +234,4 @@ function mostraProssimaDomanda() {
 
 intervallo = setInterval(tick, 1000);
 mostraProssimaDomanda();
+console.log(punti);
