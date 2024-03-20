@@ -105,6 +105,12 @@ const startQuiz = function () {
   const selezione = parseInt(tendina.value);
   const menuBtn = document.getElementById("menuBtn");
   totalQuestions = selezione;
+  localStorage.setItem("Totale_domande", selezione);
+  console.log(
+    "totale domande salvato nella memoria locale:",
+    localStorage.getItem("Totale_domande")
+  );
+
   if (selezione === 5) {
     results.splice(5);
   }

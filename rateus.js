@@ -4,26 +4,31 @@ const rateusUrl = function () {
 
 window.onload = function () {
   punteggio = localStorage.getItem("punteggio_risposte");
-  console.log(punteggio);
+  console.log("il punteggio:" + punteggio);
+  totaleDomande = localStorage.getItem("Totale_domande");
+  console.log(totaleDomande);
 
   //creazione dinamica risposte corrette
   const conteiner_corretto = document.getElementById("correct");
   const cont_risposte = document.createElement("p");
-  cont_risposte.innerText = punteggio + "/10 QUESTION";
+  cont_risposte.innerText = punteggio + "/" + totaleDomande + " QUESTIONS";
 
   const percentuale = document.createElement("h4");
-  percentuale.innerText = punteggio * 10 + "%";
+  const calcoloPercentuale = (1 / totaleDomande) * 100;
+  percentuale.innerText = (punteggio / totaleDomande) * 100 + "%";
   conteiner_corretto.appendChild(percentuale);
   conteiner_corretto.appendChild(cont_risposte);
 
   //creazione dinamica per le risposte sbagliate
   const conteinter_sbagliate = document.getElementById("wrong");
   const wrong_answer = document.createElement("p");
-  const risposteSbagliate = 10 - punteggio;
-  wrong_answer.innerText = risposteSbagliate + "/10 QUESTION";
+  const risposteSbagliate = totaleDomande - punteggio;
+  wrong_answer.innerText =
+    risposteSbagliate + "/" + totaleDomande + " QUESTIONS";
 
   const percentuale_sbagliate = document.createElement("h4");
-  percentuale_sbagliate.innerText = (10 - punteggio) * 10 + "%";
+  percentuale_sbagliate.innerText =
+    (risposteSbagliate / totaleDomande) * 100 + "%";
   conteinter_sbagliate.appendChild(percentuale_sbagliate);
   conteinter_sbagliate.appendChild(wrong_answer);
 
@@ -33,12 +38,12 @@ window.onload = function () {
     punteggio * 10
   }% 0%, orangered 0% 0%)`;
   console.log(grafico);
-  examPassed(punteggio);
+  examPassed(percentuale);
 };
 
-const examPassed = function (punteggio) {
+const examPassed = function (percentuale) {
   const pie = document.getElementById("allPie");
-  if (punteggio > 5) {
+  if (parseInt(percentuale.innerText) > 50) {
     const span1 = document.createElement("span");
     span1.innerText = "Congratulation!";
 
