@@ -19,7 +19,8 @@ body {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   color: #e7e7eb;
-  padding: 20px 80px;
+  margin-left: 9em;
+  margin-top: 5em;
 }
 
 header img {

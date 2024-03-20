@@ -6,6 +6,9 @@ header img {
 
 body {
   color: #e7e7eb;
+  margin-left: 9em;
+  margin-right: 9em;
+  margin-top: 5em;
 }
 
 main {
@@ -55,15 +58,12 @@ p {
     circle farthest-side at center,
     transparent 70%,
     white 50%
-    
   );
 }
 
 .hollow {
   display: inline-block;
 }
-
-
 
 span {
   font-size: 24pt;
