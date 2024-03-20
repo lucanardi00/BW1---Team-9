@@ -98,6 +98,7 @@ let questionCounter = 0
 let totalQuestions = results.length
 let pieChartElement = document.getElementById('pie-chart')
 let intervallo
+let punti = 0
 
 const svgNS = 'http://www.w3.org/2000/svg'
 const svg = document.createElementNS(svgNS, 'svg')
@@ -166,7 +167,17 @@ function mostraDomanda(domanda) {
     button.textContent = risposta
     button.addEventListener('click', function () {
       clearInterval(intervallo)
+      if (risposta === domanda.correct_answer) {
+        punti++
+      }
+      console.log('Risposta giusta: ', domanda.correct_answer)
+      console.log('punti: ' + punti)
       console.log('Risposta selezionata:', risposta)
+      localStorage.setItem('punteggio_risposte', punti)
+      console.log(
+        'Punteggio salvato nella memoria locale:',
+        localStorage.getItem('punteggio_risposte')
+      )
       mostraProssimaDomanda()
       secondi = 60
     })
@@ -197,3 +208,4 @@ function mostraProssimaDomanda() {
 
 intervallo = setInterval(tick, 1000)
 mostraProssimaDomanda()
+console.log(punti)
