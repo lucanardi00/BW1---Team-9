@@ -839,7 +839,6 @@ const resultsHard = [
 ]
 
 let secondi = 60
-let timer = document.getElementById('timer')
 let questionElement = document.getElementById('question')
 let answerElement = document.getElementById('answer')
 let questionCounterElement = document.getElementById('questionContainer')
