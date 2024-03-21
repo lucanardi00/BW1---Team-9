@@ -987,9 +987,16 @@ const mostraDomanda = function (domanda) {
       clearInterval(intervallo)
       if (risposta === domanda.correct_answer) {
         punti++
-        answerElement.innerHTML = '<h2>Correct!</h2>'
+        //answerElement.innerHTML = '<h2>Correct!</h2>'
+        button.style.backgroundColor = 'green'
       } else {
-        answerElement.innerHTML = '<h3>Wrong!</h3>'
+        //answerElement.innerHTML = '<h3>Wrong!</h3>'
+        button.style.backgroundColor = 'red'
+        Array.from(button.parentElement.children).forEach((button) => {
+          if (button.innerText === domanda.correct_answer) {
+            button.style.backgroundColor = 'green'
+          }
+        })
       }
 
       setTimeout(function () {
