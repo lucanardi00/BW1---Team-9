@@ -290,6 +290,7 @@ let pieChartElement = document.getElementById('pie-chart')
 let intervallo
 let punti = 0
 const spanCreate = document.createElement('span')
+const domandeFatte = []
 
 const startQuiz = function () {
   const menu = document.getElementById('menu')
@@ -313,6 +314,10 @@ const startQuiz = function () {
   questionCounterElement.appendChild(spanCreate)
   document.getElementById('pie-chart').style.display = 'block'
   menu.style.display = 'none'
+
+  clearInterval(intervallo)
+  intervallo = setInterval(tick, 1000)
+
   mostraProssimaDomanda(selezione)
 }
 
@@ -429,7 +434,19 @@ function mostraDomanda(domanda) {
 }
 
 function mostraProssimaDomanda() {
-  let domandaCasuale = results[Math.floor(Math.random() * results.length)]
+  if (domandeFatte.length === results.length) {
+    window.location.href = 'results.html'
+    return
+  }
+
+  let domandaCasuale
+
+  do {
+    domandaCasuale = results[Math.floor(Math.random() * results.length)]
+  } while (domandeFatte.includes(results.indexOf(domandaCasuale)))
+
+  domandeFatte.push(results.indexOf(domandaCasuale))
+
   if (questionCounter < totalQuestions) {
     questionCounter++
     questionCounterElement.textContent =
