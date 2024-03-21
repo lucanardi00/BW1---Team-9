@@ -988,7 +988,16 @@ const mostraDomanda = function (domanda) {
       clearInterval(intervallo)
       if (risposta === domanda.correct_answer) {
         punti++
+        answerElement.innerHTML = '<h2>Correct!</h2>'
+      } else {
+        answerElement.innerHTML = '<h3>Wrong!</h3>'
       }
+
+      setTimeout(function () {
+        mostraProssimaDomanda()
+        secondi = 60
+      }, 1000)
+
       console.log('Risposta giusta: ', domanda.correct_answer)
       console.log('punti: ' + punti)
       console.log('Risposta selezionata:', risposta)
@@ -997,8 +1006,6 @@ const mostraDomanda = function (domanda) {
         'Punteggio salvato nella memoria locale:',
         localStorage.getItem('punteggio_risposte')
       )
-      mostraProssimaDomanda()
-      secondi = 60
     })
     answerElement.appendChild(button)
   })
@@ -1024,6 +1031,7 @@ const mostraProssimaDomanda = function () {
       'QUESTION ' + questionCounter + spanCreate.innerText
   } else {
     window.location.href = 'results.html'
+    return
   }
 
   clearInterval(intervallo)

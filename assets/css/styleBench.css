@@ -17,6 +17,22 @@ h1 {
   margin-top: 80px;
 }
 
+h2 {
+  color: green;
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 80px;
+}
+
+h3 {
+  color: red;
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 80px;
+}
+
 #menu h1 {
   margin-bottom: 2em;
 }
