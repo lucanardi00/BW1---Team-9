@@ -1,4 +1,4 @@
-const results = [
+const resultsEasy = [
   {
     type: `boolean`,
     difficulty: `easy`,
@@ -268,16 +268,575 @@ const results = [
     incorrect_answers: [`120`, `160`, `100`],
   },
 ]
-let newArray = []
 
-fetch('https://opentdb.com/api.php?amount=30&category=18&difficulty=easy')
-  .then((response) => response.json())
-  .then((data) => {
-    const resultsArray = data.results
-    newArray.push(...resultsArray)
-    console.log(newArray)
-    console.log('Element at index 1:', newArray[1])
-  })
+const resultsMedium = [
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'In the server hosting industry IaaS stands for...',
+    correct_answer: 'Infrastructure as a Service',
+    incorrect_answers: [
+      'Internet as a Service',
+      'Internet and a Server',
+      'Infrastructure as a Server',
+    ],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'Linus Sebastian is the creator of the Linux kernel, which went on to be used in Linux, Android, and Chrome OS.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'Which programming language was developed by Sun Microsystems in 1995?',
+    correct_answer: 'Java',
+    incorrect_answers: ['Python', 'Solaris OS', 'C++'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: '&quot;Windows NT&quot; is a monolithic kernel.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'To bypass US Munitions Export Laws, the creator of the PGP published all the source code in book form. ',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'Nvidia&#039;s headquarters are based in which Silicon Valley city?',
+    correct_answer: 'Santa Clara',
+    incorrect_answers: ['Palo Alto', 'Cupertino', 'Mountain View'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'In HTML, which non-standard tag used to be be used to make elements scroll across the viewport?',
+    correct_answer: '&lt;marquee&gt;&lt;/marquee&gt;',
+    incorrect_answers: [
+      '&lt;scroll&gt;&lt;/scroll&gt;',
+      '&lt;move&gt;&lt;/move&gt;',
+      '&lt;slide&gt;&lt;/slide&gt;',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'The name of technology company HP stands for what?',
+    correct_answer: 'Hewlett-Packard',
+    incorrect_answers: ['Howard Packmann', 'Husker-Pollosk', 'Hellman-Pohl'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'In computing terms, typically what does CLI stand for?',
+    correct_answer: 'Command Line Interface',
+    incorrect_answers: [
+      'Common Language Input',
+      'Control Line Interface',
+      'Common Language Interface',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'The computer OEM manufacturer Clevo, known for its Sager notebook line, is based in which country?',
+    correct_answer: 'Taiwan',
+    incorrect_answers: [
+      'United States',
+      'Germany',
+      'China (People&#039;s Republic of)',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What is the main CPU is the Sega Mega Drive / Sega Genesis?',
+    correct_answer: 'Motorola 68000',
+    incorrect_answers: ['Zilog Z80', 'Yamaha YM2612', 'Intel 8088'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What five letter word is the motto of the IBM Computer company?',
+    correct_answer: 'Think',
+    incorrect_answers: ['Click', 'Logic', 'Pixel'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: '.at is the top-level domain for what country?',
+    correct_answer: 'Austria',
+    incorrect_answers: ['Argentina', 'Australia', 'Angola'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'When was the programming language &quot;C#&quot; released?',
+    correct_answer: '2000',
+    incorrect_answers: ['1998', '1999', '2001'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'Whistler was the codename of this Microsoft Operating System.',
+    correct_answer: 'Windows XP',
+    incorrect_answers: ['Windows 2000', 'Windows 7', 'Windows 95'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'Moore&#039;s law originally stated that the number of transistors on a microprocessor chip would double every...',
+    correct_answer: 'Year',
+    incorrect_answers: ['Four Years', 'Two Years', 'Eight Years'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What was the name given to Android 4.3?',
+    correct_answer: 'Jelly Bean',
+    incorrect_answers: ['Lollipop', 'Nutella', 'Froyo'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'In the programming language &quot;Python&quot;, which of these statements would display the string &quot;Hello World&quot; correctly?',
+    correct_answer: 'print(&quot;Hello World&quot;)',
+    incorrect_answers: [
+      'console.log(&quot;Hello World&quot;)',
+      'echo &quot;Hello World&quot;',
+      'printf(&quot;Hello World&quot;)',
+    ],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'AMD created the first consumer 64-bit processor.',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'All program codes have to be compiled into an executable file in order to be run. This file can then be executed on any machine.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'Approximately how many Apple I personal computers were created?',
+    correct_answer: '200',
+    incorrect_answers: ['100', '500', '1000'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'How fast is USB 3.1 Gen 2 theoretically?',
+    correct_answer: '10 Gb/s',
+    incorrect_answers: ['5 Gb/s', '8 Gb/s', '1 Gb/s'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What does the term MIME stand for, in regards to computing?',
+    correct_answer: 'Multipurpose Internet Mail Extensions',
+    incorrect_answers: [
+      'Mail Internet Mail Exchange',
+      'Multipurpose Interleave Mail Exchange',
+      'Mail Interleave Method Exchange',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What does RAID stand for?',
+    correct_answer: 'Redundant Array of Independent Disks',
+    incorrect_answers: [
+      'Rapid Access for Indexed Devices',
+      'Range of Applications with Identical Designs',
+      'Randomized Abstract Identification Description',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What does &quot;LCD&quot; stand for?',
+    correct_answer: 'Liquid Crystal Display',
+    incorrect_answers: [
+      'Language Control Design',
+      'Last Common Difference',
+      'Long Continuous Design',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What was the first commerically available computer processor?',
+    correct_answer: 'Intel 4004',
+    incorrect_answers: ['Intel 486SX', 'TMS 1000', 'AMD AM386'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'How many bytes are in a single Kibibyte?',
+    correct_answer: '1024',
+    incorrect_answers: ['2400', '1000', '1240'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question: 'What is known as &quot;the brain&quot; of the Computer?',
+    correct_answer: 'Central Processing Unit',
+    incorrect_answers: ['Motherboard', 'Graphics Processing Unit', 'Keyboard'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'Which of these is the name for the failed key escrow device introduced by the National Security Agency in 1993?',
+    correct_answer: 'Clipper Chip',
+    incorrect_answers: ['Enigma Machine', 'Skipjack', 'Nautilus'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'medium',
+    category: 'Science: Computers',
+    question:
+      'The last Windows operating system to be based on the Windows 9x kernel was Windows 98.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+]
+
+const resultsHard = [
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What was the name of the security vulnerability found in Bash in 2014?',
+    correct_answer: 'Shellshock',
+    incorrect_answers: ['Heartbleed', 'Bashbug', 'Stagefright'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Which of these is not a key value of Agile software development?',
+    correct_answer: 'Comprehensive documentation',
+    incorrect_answers: [
+      'Individuals and interactions',
+      'Customer collaboration',
+      'Responding to change',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What does the International System of Quantities refer 1024 bytes as?',
+    correct_answer: 'Kibibyte',
+    incorrect_answers: ['Kylobyte', 'Kilobyte', 'Kelobyte'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'What port does HTTP run on?',
+    correct_answer: '80',
+    incorrect_answers: ['53', '443', '23'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What is the name of the process that sends one qubit of information using two bits of classical information?',
+    correct_answer: 'Quantum Teleportation',
+    incorrect_answers: [
+      'Super Dense Coding',
+      'Quantum Entanglement',
+      'Quantum Programming',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Dutch computer scientist Mark Overmars is known for creating which game development engine?',
+    correct_answer: 'Game Maker',
+    incorrect_answers: ['Stencyl', 'Construct', 'Torque 2D'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'Which RAID array type is associated with data mirroring?',
+    correct_answer: 'RAID 1',
+    incorrect_answers: ['RAID 0', 'RAID 10', 'RAID 5'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'What major programming language does Unreal Engine 4 use?',
+    correct_answer: 'C++',
+    incorrect_answers: ['Assembly', 'C#', 'ECMAScript'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'The IBM PC used an Intel 8008 microprocessor clocked at 4.77 MHz and 8 kilobytes of memory.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Who is the original author of the realtime physics engine called PhysX?',
+    correct_answer: 'NovodeX',
+    incorrect_answers: ['Ageia', 'Nvidia', 'AMD'],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'The T-Mobile Sidekick smartphone is a re-branded version of the Danger Hiptop.',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'The internet domain .fm is the country-code top-level domain for which Pacific Ocean island nation?',
+    correct_answer: 'Micronesia',
+    incorrect_answers: ['Fiji', 'Tuvalu', 'Marshall Islands'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'America Online (AOL) started out as which of these online service providers?',
+    correct_answer: 'Quantum Link',
+    incorrect_answers: ['CompuServe', 'Prodigy', 'GEnie'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'How many Hz does the video standard PAL support?',
+    correct_answer: '50',
+    incorrect_answers: ['59', '60', '25'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What is the codename of the eighth generation Intel Core micro-architecture launched in October 2017?',
+    correct_answer: 'Coffee Lake',
+    incorrect_answers: ['Sandy Bridge', 'Skylake', 'Broadwell'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'The acronym &quot;RIP&quot; stands for which of these?',
+    correct_answer: 'Routing Information Protocol',
+    incorrect_answers: [
+      'Runtime Instance Processes',
+      'Regular Interval Processes',
+      'Routine Inspection Protocol',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'Who invented the &quot;Spanning Tree Protocol&quot;?',
+    correct_answer: 'Radia Perlman',
+    incorrect_answers: ['Paul Vixie', 'Vint Cerf', 'Michael Roberts'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Which of these names was an actual codename for a cancelled Microsoft project?',
+    correct_answer: 'Neptune',
+    incorrect_answers: ['Enceladus', 'Pollux', 'Saturn'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Released in 2001, the first edition of Apple&#039;s Mac OS X operating system (version 10.0) was given what animal code name?',
+    correct_answer: 'Cheetah',
+    incorrect_answers: ['Puma', 'Tiger', 'Leopard'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'Which data structure does FILO apply to?',
+    correct_answer: 'Stack',
+    incorrect_answers: ['Queue', 'Heap', 'Tree'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What type of sound chip does the Super Nintendo Entertainment System (SNES) have?',
+    correct_answer: 'ADPCM Sampler',
+    incorrect_answers: [
+      'FM Synthesizer',
+      'Programmable Sound Generator (PSG)',
+      'PCM Sampler',
+    ],
+  },
+  {
+    type: 'boolean',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'DHCP stands for Dynamic Host Configuration Port.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Which of the following is the oldest of these computers by release date?',
+    correct_answer: 'TRS-80',
+    incorrect_answers: ['Commodore 64', 'ZX Spectrum', 'Apple 3'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Which of the following computer components can be built using only NAND gates?',
+    correct_answer: 'ALU',
+    incorrect_answers: ['CPU', 'RAM', 'Register'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What was the first company to use the term &quot;Golden Master&quot;?',
+    correct_answer: 'Apple',
+    incorrect_answers: ['IBM', 'Microsoft', 'Google'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'The Harvard architecture for micro-controllers added which additional bus?',
+    correct_answer: 'Instruction',
+    incorrect_answers: ['Address', 'Data', 'Control'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?',
+    correct_answer: 'Transport',
+    incorrect_answers: ['Session', 'Data link', 'Network'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'What vulnerability ranked #1 on the OWASP Top 10 in 2013?',
+    correct_answer: 'Injection ',
+    incorrect_answers: [
+      'Broken Authentication',
+      'Cross-Site Scripting',
+      'Insecure Direct Object References',
+    ],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question:
+      'Which of these Cherry MX mechanical keyboard switches is both tactile and clicky?',
+    correct_answer: 'Cherry MX Blue',
+    incorrect_answers: ['Cherry MX Black', 'Cherry MX Red', 'Cherry MX Brown'],
+  },
+  {
+    type: 'multiple',
+    difficulty: 'hard',
+    category: 'Science: Computers',
+    question: 'What internet protocol was documented in RFC 1459?',
+    correct_answer: 'IRC',
+    incorrect_answers: ['HTTP', 'HTTPS', 'FTP'],
+  },
+]
 
 let secondi = 60
 let timer = document.getElementById('timer')
@@ -285,12 +844,13 @@ let questionElement = document.getElementById('question')
 let answerElement = document.getElementById('answer')
 let questionCounterElement = document.getElementById('questionContainer')
 let questionCounter = 0
-let totalQuestions = results.length
+let totalQuestions
 let pieChartElement = document.getElementById('pie-chart')
 let intervallo
 let punti = 0
 const spanCreate = document.createElement('span')
 const domandeFatte = []
+let results = []
 
 const startQuiz = function () {
   const menu = document.getElementById('menu')
@@ -298,6 +858,17 @@ const startQuiz = function () {
   const tendina = document.getElementById('tendina')
   const selezione = parseInt(tendina.value)
   const menuBtn = document.getElementById('menuBtn')
+
+  if (difficolta.value === 'easy') {
+    results = resultsEasy
+  } else if (difficolta.value === 'medium') {
+    results = resultsMedium
+  } else if (difficolta.value === 'hard') {
+    results = resultsHard
+  }
+
+  console.log(results)
+
   totalQuestions = selezione
   localStorage.setItem('Totale_domande', selezione)
   console.log(
@@ -373,7 +944,7 @@ remainingText.setAttribute('y', timerTextY + 20)
 remainingText.textContent = 'REMAINING'
 svg.appendChild(remainingText)
 
-function updatePieChart() {
+const updatePieChart = function () {
   const percentage = (secondi / 60) * 100
   const circumference = 2 * Math.PI * parseFloat(pieChart.getAttribute('r'))
   const strokeDasharray = (percentage / 100) * circumference
@@ -386,7 +957,7 @@ function updatePieChart() {
   textElement.textContent = secondi
 }
 
-function tick() {
+const tick = function () {
   secondi = secondi - 1
   if (secondi === 0) {
     clearInterval(intervallo)
@@ -396,7 +967,7 @@ function tick() {
   updatePieChart()
 }
 
-function mostraDomanda(domanda) {
+const mostraDomanda = function (domanda) {
   // Pulisci elementi precedenti
   questionElement.innerHTML = ''
   answerElement.innerHTML = ''
@@ -433,7 +1004,7 @@ function mostraDomanda(domanda) {
   })
 }
 
-function mostraProssimaDomanda() {
+const mostraProssimaDomanda = function () {
   if (domandeFatte.length === results.length) {
     window.location.href = 'results.html'
     return
