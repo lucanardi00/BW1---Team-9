@@ -2,6 +2,10 @@ const rateusUrl = function () {
   window.location.href = "feedback.html";
 };
 
+const retakeUrl = function () {
+  window.location.href = "benchmark.html";
+};
+
 window.onload = function () {
   punteggio = localStorage.getItem("punteggio_risposte");
   console.log("il punteggio:" + punteggio);
