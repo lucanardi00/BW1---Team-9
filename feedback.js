@@ -1,6 +1,5 @@
 const stelleJs = document.getElementById("stelleJs");
-let ultimaStellaCliccata = 0; // variabile per tenere traccia dell'ultima stella cliccata
-
+let ultimaStellaCliccata = 0;
 for (let i = 0; i < 10; i++) {
   const stella = document.createElement("img");
   stella.src =
@@ -8,21 +7,21 @@ for (let i = 0; i < 10; i++) {
   stella.style.filter = "grayscale(1)";
   stella.style.cursor = "pointer";
   stella.className = "stellina";
-  stella.dataset.index = i; // aggiungiamo l'indice della stella come attributo dei dati
+  stella.dataset.index = i;
 
   stella.addEventListener("mouseenter", (event) => {
-    const hoveredIndex = parseInt(event.target.dataset.index); // ottieni l'indice della stella su cui si trova il mouse
-    illuminareStelle(hoveredIndex); // illuminare fino alla stella su cui si trova il mouse
+    const hoveredIndex = parseInt(event.target.dataset.index);
+    illuminareStelle(hoveredIndex);
   });
 
   stella.addEventListener("mouseleave", () => {
-    illuminareStelle(ultimaStellaCliccata); // illuminare fino all'ultima stella cliccata
+    illuminareStelle(ultimaStellaCliccata);
   });
 
   stella.addEventListener("click", (event) => {
-    const clickedIndex = parseInt(event.target.dataset.index); // ottieni l'indice della stella cliccata
-    ultimaStellaCliccata = clickedIndex; // impostiamo l'ultima stella cliccata
-    illuminareStelle(ultimaStellaCliccata); // illuminare fino all'ultima stella cliccata
+    const clickedIndex = parseInt(event.target.dataset.index);
+    ultimaStellaCliccata = clickedIndex;
+    illuminareStelle(ultimaStellaCliccata);
   });
 
   stelleJs.appendChild(stella);
@@ -38,3 +37,9 @@ const illuminareStelle = (index) => {
     }
   });
 };
+
+const infoBtn = document.querySelector("button");
+
+infoBtn.addEventListener("click", function () {
+  window.location.href = "https://www.epicode.com/";
+});
